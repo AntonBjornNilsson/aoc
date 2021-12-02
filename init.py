@@ -110,7 +110,7 @@ if not is_part_a_done:
     print("Run with command:")
     print()
     print(f"python {year}/{str(day).zfill(2)}/a.py")
-elif True:
+elif not is_part_b_done:
     #####################################
     # Create b.py
     #####################################
