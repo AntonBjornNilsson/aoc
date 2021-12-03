@@ -128,6 +128,7 @@ elif not is_part_b_done:
 
     temp_py.extend([
         "part2 = solve2(example)",
+        "print(part2)",
         f"assert part2 == {answer2}",
         "print('Part 2:', part2)",
     ])
