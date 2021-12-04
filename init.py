@@ -9,15 +9,15 @@ import aocd
 from bs4 import BeautifulSoup
 import requests
 
-#####################################
+#####################################################################
 # Setup
-#####################################
+#####################################################################
 today_date = int(date.today().strftime("%d"))
 today_year = int(date.today().strftime("%Y"))
 if len(sys.argv) > 1:
-    #####################################
+    #####################################################################
     # Argparse, mutually exclusive due to multiple argparse in program
-    #####################################
+    #####################################################################
     parser = argparse.ArgumentParser(description='Rise and shine, today is a new day')
     parser.add_argument('--day', type=int, default=today_date,
                         help='What day is it')
@@ -29,33 +29,33 @@ if len(sys.argv) > 1:
 else:
     day = today_date
     year = today_year
-    #####################################
+    #####################################################################
     # Scrape valid aoc token from browser cookies
-    #####################################
+    #####################################################################
     # It works, crazy :D
     aocd.cookies.scrape_session_tokens()
 
 
-#####################################
+#####################################################################
 # Create folders
-#####################################
+#####################################################################
 print(f"Setting up a folder for {day} - {year}")
 directory = (Path(str(year)) / str(day).zfill(2)).resolve()
 print(f"In directory {directory}")
 directory.mkdir(parents=True, exist_ok=True)
 
-#####################################
+#####################################################################
 # Get input.txt
-#####################################
+#####################################################################
 puzzle = aocd.models.Puzzle(year=year, day=day)
 input_txt = directory / 'input.txt'
 input_txt.write_text(puzzle.input_data, "utf8")
 is_part_a_done = puzzle.answered_a
 is_part_b_done = puzzle.answered_b
 
-#####################################
+#####################################################################
 # Scrape daily challenge, functions
-#####################################
+#####################################################################
 def parse_from_web():
     print("parsed scrape from web")
     cookies = {"session": session_cookie }
@@ -83,9 +83,9 @@ def parse_html(html_string: str) -> Tuple[str, int, int]:
         answer2 = -1
     return example_input, answer, answer2
 
-#####################################
+#####################################################################
 # Scrape daily challenge
-#####################################
+#####################################################################
 session_cookie = (Path(aocd.models.AOCD_CONFIG_DIR) / "token").read_text()
 scrape_path: Path = (Path(aocd.models.AOCD_DATA_DIR) / "bs4" / str(year) / str(day))
 scrape_path = scrape_path / "a" if not is_part_a_done else scrape_path / "b"
@@ -99,9 +99,9 @@ example_input, answer, answer2 = parse_html(html_string)
 a_py = directory / "a.py"
 b_py = directory / "b.py"
 if not is_part_a_done:
-    #####################################
+    #####################################################################
     # Create a.py
-    #####################################
+    #####################################################################
     template_path = Path("template.py")
     template_data = template_path.read_text()
     template_data = template_data.replace("<example_string>", example_input)
@@ -111,9 +111,9 @@ if not is_part_a_done:
     print()
     print(f"python {year}/{str(day).zfill(2)}/a.py")
 elif not is_part_b_done:
-    #####################################
+    #####################################################################
     # Create b.py
-    #####################################
+    #####################################################################
     temp_py = a_py.read_text().split('\n')
     # copy solve function
     solve_string = "def solve(init_list: list) -> int:"
@@ -128,7 +128,7 @@ elif not is_part_b_done:
 
     temp_py.extend([
         "part2 = solve2(example)",
-        "print(part2)",
+        "print('Example part 2', part2)",
         f"assert part2 == {answer2}",
         "print('Part 2:', part2)",
     ])
