@@ -23,6 +23,6 @@ if each_line_is_bool:
     example = [ int(e) for e in example if e]
 
 part1 = solve(example)
-print("Example part 1", part1)
+print("Example part 1:", part1)
 assert part1 == <answer_string>
 print("Part 1:", solve(lines))
