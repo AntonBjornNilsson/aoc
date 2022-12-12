@@ -41,7 +41,7 @@ win_loss = {
         you.draw: 3,
         you.loss: 2,
         you.win: 1,
-    }
+    },
 }
 
 
@@ -70,7 +70,7 @@ C Z
 ]
 
 part2 = solve2(example)
-print('Example part 2:', part2)
+print("Example part 2:", part2)
 assert part2 == 12
-print('Part 2:', solve2(lines))
+print("Part 2:", solve2(lines))
 # 16959

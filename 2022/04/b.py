@@ -3,7 +3,8 @@ from pathlib import Path
 
 
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
+
 
 def parse(xx: str) -> str:
     s_start, s_stop = [int(x) for x in xx.split("-")]
@@ -36,14 +37,19 @@ def solve2(init_list: list) -> int:
     return tot
 
 
-
-example = [ e.strip() for e in """2-4,6-8
+example = [
+    e.strip()
+    for e in """2-4,6-8
 2-3,4-5
 5-7,7-9
 2-8,3-7
 6-6,4-6
 2-6,4-8
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)
@@ -55,6 +61,6 @@ print("Part 1:", solve(lines))
 # 584 +
 # 560 forgot the el in elif
 part2 = solve2(example)
-print('Example part 2:', part2)
+print("Example part 2:", part2)
 assert part2 == 4
-print('Part 2:', solve2(lines))
+print("Part 2:", solve2(lines))

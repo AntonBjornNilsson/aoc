@@ -3,7 +3,7 @@ from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
 
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -41,7 +41,7 @@ def solve2(init_list: list) -> int:
         # if row == 0:
         #     print(row, col)
         #     print(X, col, [X, X+1, X-1], col + 1 in [X, X+1, X-1])
-        if col in [X, X+1, X-1]:
+        if col in [X, X + 1, X - 1]:
             pixels[row][col] = "#"
         else:
             pixels[row][col] = "."
@@ -62,8 +62,9 @@ def solve2(init_list: list) -> int:
     return sum(signals)
 
 
-
-example = [ e.strip() for e in """addx 15
+example = [
+    e.strip()
+    for e in """addx 15
 addx -11
 addx 6
 addx -3
@@ -208,7 +209,11 @@ addx -6
 addx -11
 noop
 noop
-noop""".split("\n") if e ]
+noop""".split(
+        "\n"
+    )
+    if e
+]
 
 part1 = solve(example)
 print("Example part 1:", part1)
@@ -218,13 +223,13 @@ print("Part 1:", solve(lines))
 # 15260 Correct
 
 part2 = solve2(example)
-print('Example part 2:', part2)
+print("Example part 2:", part2)
 # assert part2 == -1
-print('Part 2:', solve2(lines))
+print("Part 2:", solve2(lines))
 
 ###...##..#..#.####..##..#....#..#..##..
-#..#.#..#.#..#.#....#..#.#....#..#.#..#.
-#..#.#....####.###..#....#....#..#.#....
+# ..#.#..#.#..#.#....#..#.#....#..#.#..#.
+# ..#.#....####.###..#....#....#..#.#....
 ###..#.##.#..#.#....#.##.#....#..#.#.##.
-#....#..#.#..#.#....#..#.#....#..#.#..#.
-#.....###.#..#.#.....###.####..##...###.
+# ....#..#.#..#.#....#..#.#....#..#.#..#.
+# .....###.#..#.#.....###.####..##...###.

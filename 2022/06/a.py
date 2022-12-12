@@ -6,19 +6,16 @@ with (Path(__file__).parent / "input.txt").open() as text:
     lines = text.read()
 
 
-
-
 def solve(init_str: list) -> int:
     tot = 0
     for i in range(len(init_str)):
-        test = init_str[i:i+4]
+        test = init_str[i : i + 4]
         if len(list(set(test))) == len(test):
-            return i+4
+            return i + 4
     return tot
 
 
 # def solve2(init_list: list) -> int:
-
 
 
 e = """mjqjpqmgbljsphdztnvjfqwrcgsmlb"""

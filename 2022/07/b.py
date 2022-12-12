@@ -4,7 +4,7 @@ import re
 from collections import defaultdict
 
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -16,15 +16,19 @@ def solve(init_list: list) -> int:
             if "cd" in command:
                 mode = "step"
                 if ".." in command:
-                    context = "/".join(context.split("/")[:-1]) if context.count("/") > 1 else "/"
+                    context = (
+                        "/".join(context.split("/")[:-1])
+                        if context.count("/") > 1
+                        else "/"
+                    )
                 else:
                     context += "/" + command[5:] if context[-1] != "/" else command[5:]
             if command == "$ ls":
                 mode = "read"
         if mode == "read" and "dir" not in command:
-            size = re.findall(r'\d+', command)
+            size = re.findall(r"\d+", command)
             if size:
-                for slashes in range(context.count("/")+1):
+                for slashes in range(context.count("/") + 1):
                     temp = "/" + "/".join(context[1:].split("/")[:slashes])
                     dir_count[temp] += int(size[0])
     ret = 0
@@ -44,18 +48,22 @@ def solve2(init_list: list) -> int:
             if "cd" in command:
                 mode = "step"
                 if ".." in command:
-                    context = "/".join(context.split("/")[:-1]) if context.count("/") > 1 else "/"
+                    context = (
+                        "/".join(context.split("/")[:-1])
+                        if context.count("/") > 1
+                        else "/"
+                    )
                 else:
                     context += "/" + command[5:] if context[-1] != "/" else command[5:]
             if command == "$ ls":
                 mode = "read"
         if mode == "read" and "dir" not in command:
-            size = re.findall(r'\d+', command)
+            size = re.findall(r"\d+", command)
             if size:
                 if len(context) == 1:
                     dir_count[context] += int(size[0])
                 else:
-                    for slashes in range(context.count("/")+1):
+                    for slashes in range(context.count("/") + 1):
                         temp = "/" + "/".join(context[1:].split("/")[:slashes])
                         dir_count[temp] += int(size[0])
                         print(temp)
@@ -72,8 +80,9 @@ def solve2(init_list: list) -> int:
     return min(candidates)
 
 
-
-example = [ e.strip() for e in """$ cd /
+example = [
+    e.strip()
+    for e in """$ cd /
 $ ls
 dir a
 14848514 b.txt
@@ -96,7 +105,11 @@ $ ls
 8033020 d.log
 5626152 d.ext
 7214296 k
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)
@@ -105,6 +118,6 @@ assert part1 == 95437
 print("Part 1:", solve(lines))
 
 part2 = solve2(example)
-print('Example part 2:', part2)
+print("Example part 2:", part2)
 assert part2 == 24933642
-print('Part 2:', solve2(lines))
+print("Part 2:", solve2(lines))

@@ -4,7 +4,7 @@ import re
 from collections import defaultdict
 
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -16,15 +16,19 @@ def solve(init_list: list) -> int:
             if "cd" in command:
                 mode = "step"
                 if ".." in command:
-                    context = "/".join(context.split("/")[:-1]) if context.count("/") > 1 else "/"
+                    context = (
+                        "/".join(context.split("/")[:-1])
+                        if context.count("/") > 1
+                        else "/"
+                    )
                 else:
                     context += "/" + command[5:] if context[-1] != "/" else command[5:]
             if command == "$ ls":
                 mode = "read"
         if mode == "read" and "dir" not in command:
-            size = re.findall(r'\d+', command)
+            size = re.findall(r"\d+", command)
             if size:
-                for slashes in range(context.count("/")+1):
+                for slashes in range(context.count("/") + 1):
                     temp = "/" + "/".join(context[1:].split("/")[:slashes])
                     dir_count[temp] += int(size[0])
     ret = 0
@@ -38,8 +42,9 @@ def solve(init_list: list) -> int:
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """$ cd /
+example = [
+    e.strip()
+    for e in """$ cd /
 $ ls
 dir a
 14848514 b.txt
@@ -62,7 +67,11 @@ $ ls
 8033020 d.log
 5626152 d.ext
 7214296 k
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)

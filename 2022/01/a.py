@@ -3,7 +3,7 @@ from pathlib import Path
 
 each_line_is_bool = False
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line for line in text.read().split("\n")]
+    lines = [line for line in text.read().split("\n")]
 
 
 def solve(init_list: list) -> int:
@@ -23,7 +23,6 @@ def solve(init_list: list) -> int:
 # def solve2(init_list: list) -> int:
 
 
-
 example = """1000
 2000
 3000
@@ -38,9 +37,11 @@ example = """1000
 9000
 
 10000
-""".split("\n")
+""".split(
+    "\n"
+)
 if each_line_is_bool:
-    example = [ int(e) for e in example if e]
+    example = [int(e) for e in example if e]
 
 part1 = solve(example)
 print("Example part 1:", part1)

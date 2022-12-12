@@ -3,10 +3,10 @@ from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
 
-        lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
-def ascii_conversion(c:str):
+def ascii_conversion(c: str):
     if c.islower():
         return ord(c) - 96
     return ord(c) - 38
@@ -16,7 +16,7 @@ def solve(init_list: list) -> int:
     tot = 0
     for line in init_list:
         l = len(line)
-        half = int(l/2)
+        half = int(l / 2)
         first = line[:half]
         second = line[half:]
         for f in set(first):
@@ -28,14 +28,19 @@ def solve(init_list: list) -> int:
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """vJrwpWtwJgWrhcsFMMfFFhFp
+example = [
+    e.strip()
+    for e in """vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)

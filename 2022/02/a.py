@@ -38,7 +38,7 @@ win_loss = {
         you.rock: 6,
         you.paper: 0,
         you.scissor: 3,
-    }
+    },
 }
 
 

@@ -3,7 +3,8 @@ from pathlib import Path
 
 
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
+
 
 def parse(xx: str) -> str:
     s_start, s_stop = [int(x) for x in xx.split("-")]
@@ -26,14 +27,19 @@ def solve(init_list: list) -> int:
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """2-4,6-8
+example = [
+    e.strip()
+    for e in """2-4,6-8
 2-3,4-5
 5-7,7-9
 2-8,3-7
 6-6,4-6
 2-6,4-8
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)

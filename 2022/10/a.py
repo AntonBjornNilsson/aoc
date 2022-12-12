@@ -3,7 +3,7 @@ from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
 
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -32,8 +32,9 @@ def solve(init_list: list) -> int:
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """addx 15
+example = [
+    e.strip()
+    for e in """addx 15
 addx -11
 addx 6
 addx -3
@@ -178,7 +179,11 @@ addx -6
 addx -11
 noop
 noop
-noop""".split("\n") if e ]
+noop""".split(
+        "\n"
+    )
+    if e
+]
 
 part1 = solve(example)
 print("Example part 1:", part1)
