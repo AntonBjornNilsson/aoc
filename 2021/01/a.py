@@ -5,11 +5,12 @@ from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
     try:
-        lines = [ int(line) for line in text.readlines() if line]
+        lines = [int(line) for line in text.readlines() if line]
         each_line_is_bool = True
     except ValueError:
-        lines = [ line for line in text.readlines() if line]
+        lines = [line for line in text.readlines() if line]
         each_line_is_bool = False
+
 
 def solve(init_list: list) -> int:
     count = -1
@@ -19,6 +20,7 @@ def solve(init_list: list) -> int:
             count += 1
         last = y
     return count
+
 
 # def solve2(init_list: list) -> int:
 
@@ -32,9 +34,11 @@ example = """199
 269
 260
 263
-""".split("\n")
+""".split(
+    "\n"
+)
 if each_line_is_bool:
-    example = [ int(e) for e in example if e]
+    example = [int(e) for e in example if e]
 
 
 part1 = solve(example)

@@ -1,28 +1,16 @@
-#!/usr/local/env python
-from pathlib import Path
+from parsers import parse_int_on_newline
+from validation import validate
+from .a import solve
+from .b import solve as solve2
 
-each_line_is_bool = False
-with (Path(__file__).parent / "input.txt").open() as text:
-    try:
-        lines = [ int(line) for line in text.read().split("\n") if line]
-        each_line_is_bool = True
-    except ValueError:
-        lines = [ line.strip() for line in text.read().split("\n") if line]
+parse_function = parse_int_on_newline
 
+lines = parse_function(__file__, "input")
+example = parse_function(__file__, "example")
+print(f"Formatted example looks like this \n{example}")
+example_a = solve(example)
+solution_a = solve(lines)
+example_b = solve2(example)
+solution_b = solve2(lines)
 
-def solve(init_list: list) -> int:
-    return 0
-
-
-# def solve2(init_list: list) -> int:
-
-
-
-example = [ e.strip() for e in """<example_string>""".split("\n") if e ]
-if each_line_is_bool:
-    example = [ int(e) for e in example if e]
-
-part1 = solve(example)
-print("Example part 1:", part1)
-assert part1 == <answer_string>
-print("Part 1:", solve(lines))
+validate(__file__, example_a, example_b, solution_a, solution_b)

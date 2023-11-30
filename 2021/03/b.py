@@ -5,7 +5,7 @@ import operator
 
 each_line_is_bool = False
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.readlines() if line]
+    lines = [line.strip() for line in text.readlines() if line]
 
 
 def solve(init_list: list) -> int:
@@ -25,13 +25,17 @@ def solve(init_list: list) -> int:
         else:
             gamma_delta.append(0)
         bit = "".join([str(x) for x in gamma_delta])
-    inverse_bit = ''.join(['1' if i == '0' else '0'
-                     for i in bit])
-    gamma = int(bit,2)
-    epsilon = int(inverse_bit,2)
+    inverse_bit = "".join(["1" if i == "0" else "0" for i in bit])
+    gamma = int(bit, 2)
+    epsilon = int(inverse_bit, 2)
     return gamma * epsilon
 
-def inner_solve2(init_list: list, operator, index: int = 0,) -> int:
+
+def inner_solve2(
+    init_list: list,
+    operator,
+    index: int = 0,
+) -> int:
     length = len(init_list[0])
     for i in range(index, length):
         one_list = []
@@ -58,12 +62,16 @@ def inner_solve2(init_list: list, operator, index: int = 0,) -> int:
                 else:
                     return zero_list[0]
 
+
 def solve2(init_list: list) -> int:
-    o2 = int(inner_solve2(init_list, operator.ge ), 2)
-    co2 = int(inner_solve2(init_list, operator.lt ), 2)
+    o2 = int(inner_solve2(init_list, operator.ge), 2)
+    co2 = int(inner_solve2(init_list, operator.lt), 2)
     return o2 * co2
 
-example = [e for e in """00100
+
+example = [
+    e
+    for e in """00100
 11110
 10110
 10111
@@ -75,9 +83,13 @@ example = [e for e in """00100
 11001
 00010
 01010
-""".split("\n") if e]
+""".split(
+        "\n"
+    )
+    if e
+]
 if each_line_is_bool:
-    example = [ int(e) for e in example if e ]
+    example = [int(e) for e in example if e]
 
 part1 = solve(example)
 print("Unit A", part1)
@@ -87,4 +99,4 @@ print("Part 1:", solve(lines))
 part2 = solve2(example)
 print("Unit B", part2)
 assert part2 == 230
-print('Part 2:', solve2(lines))
+print("Part 2:", solve2(lines))

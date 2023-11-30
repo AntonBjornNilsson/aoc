@@ -2,14 +2,9 @@
 from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
-look_up = {
-    "(": ")",
-    "[": "]",
-    "{": "}",
-    "<": ">"
-}
+look_up = {"(": ")", "[": "]", "{": "}", "<": ">"}
 
 value_look_up = {
     ")": 3,
@@ -18,12 +13,12 @@ value_look_up = {
     ">": 25137,
 }
 
-def req_is_valid(line: str, expected: str="", depth: int = 0):
+
+def req_is_valid(line: str, expected: str = "", depth: int = 0):
     stack = []
     for char in line:
         if char in look_up.keys():
             stack.append(char)
-
 
         elif char in look_up.values():
             matching = stack.pop()
@@ -31,6 +26,7 @@ def req_is_valid(line: str, expected: str="", depth: int = 0):
                 continue
             return value_look_up[char]
     return None
+
 
 def is_valid(line: str) -> int:
     length = len(line)
@@ -40,17 +36,20 @@ def is_valid(line: str) -> int:
         return ret
     return 0
 
+
 def solve(init_list: list) -> int:
     count = 0
     for line in init_list:
         count += is_valid(line)
     return count
 
+
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """[({(<(())[]>[[{[]{<()<>>
+example = [
+    e.strip()
+    for e in """[({(<(())[]>[[{[]{<()<>>
 [(()[<>])]({[<{<<[]>>(
 {([(<{}[<>[]}>{[]{[(<()>
 (((({<>}<{<{<>}{[]{[]{}
@@ -59,7 +58,11 @@ example = [ e.strip() for e in """[({(<(())[]>[[{[]{<()<>>
 {<[[]]>}<{[{[{[]{()[[[]
 [<(<(<(<{}))><([]([]()
 <{([([[(<>()){}]>(<<{{
-<{([{{}}[<[[[<>{}]]]>[]]""".split("\n") if e ]
+<{([{{}}[<[[[<>{}]]]>[]]""".split(
+        "\n"
+    )
+    if e
+]
 
 
 test1 = "[({(<(())[]>[[{[]{<()<>>"

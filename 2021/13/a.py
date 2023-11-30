@@ -2,7 +2,8 @@
 from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
+
 
 def fold_x(coords: list, x_line: int) -> list:
     new_coords = []
@@ -21,6 +22,7 @@ def fold_x(coords: list, x_line: int) -> list:
             new_coords.append(cached)
     return new_coords
 
+
 def fold_y(coords: list, y_line: int) -> list:
     new_coords = []
     down = y_line * 2
@@ -38,9 +40,14 @@ def fold_y(coords: list, y_line: int) -> list:
             new_coords.append(cached)
     return new_coords
 
+
 def solve(init_list: list) -> int:
     coords = [[int(i) for i in x.split(",")] for x in init_list if "fold" not in x]
-    folds = [[f for f in x.replace("fold along ","").split("=")] for x in init_list if "fold" in x]
+    folds = [
+        [f for f in x.replace("fold along ", "").split("=")]
+        for x in init_list
+        if "fold" in x
+    ]
     # folds = [folds[0]]
     print(folds)
     # print_paper(coords)
@@ -59,6 +66,7 @@ def solve(init_list: list) -> int:
 
 # def solve2(init_list: list) -> int:
 
+
 def print_paper(coords: list):
     right = max([c[0] for c in coords])
     down = max([c[1] for c in coords])
@@ -69,12 +77,14 @@ def print_paper(coords: list):
             if [x, y] in coords:
                 print("#", end="")
             else:
-                print(".", end = "")
+                print(".", end="")
         print()
     print("-------------------------------------")
 
 
-example = [ e.strip() for e in """6,10
+example = [
+    e.strip()
+    for e in """6,10
 0,14
 9,10
 0,3
@@ -94,7 +104,11 @@ example = [ e.strip() for e in """6,10
 9,0
 
 fold along y=7
-fold along x=5""".split("\n") if e ]
+fold along x=5""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)

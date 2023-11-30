@@ -4,7 +4,7 @@ from typing import DefaultDict
 
 with (Path(__file__).parent / "input.txt").open() as text:
 
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -29,6 +29,7 @@ def solve(init_list: list) -> int:
                 total += 1
     return total
 
+
 def solve2(init_list: list) -> int:
     coords = [[0 for x in range(1000)] for x in range(1000)]
     for line in init_list:
@@ -47,7 +48,10 @@ def solve2(init_list: list) -> int:
                 for y in range(y1, y2 + inc_dec_y, inc_dec_y):
                     coords[y][x] += 1
         else:
-            for x, y in zip(range(x1, x2 + inc_dec_x, inc_dec_x), range(y1, y2 + inc_dec_y, inc_dec_y)):
+            for x, y in zip(
+                range(x1, x2 + inc_dec_x, inc_dec_x),
+                range(y1, y2 + inc_dec_y, inc_dec_y),
+            ):
                 coords[y][x] += 1
     total = 0
     for c in coords:
@@ -58,8 +62,9 @@ def solve2(init_list: list) -> int:
     return total
 
 
-
-example = [ e.strip() for e in """0,9 -> 5,9
+example = [
+    e.strip()
+    for e in """0,9 -> 5,9
 8,0 -> 0,8
 9,4 -> 3,4
 2,2 -> 2,1
@@ -69,7 +74,11 @@ example = [ e.strip() for e in """0,9 -> 5,9
 3,4 -> 1,4
 0,0 -> 8,8
 5,5 -> 8,2
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)
@@ -78,6 +87,6 @@ assert part1 == 5
 print("Part 1:", solve(lines))
 
 part2 = solve2(example)
-print('Example part 2', part2)
+print("Example part 2", part2)
 assert part2 == 12
-print('Part 2:', solve2(lines))
+print("Part 2:", solve2(lines))

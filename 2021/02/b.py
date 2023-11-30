@@ -4,10 +4,10 @@ from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
     try:
-        lines = [ int(line) for line in text.readlines() if line]
+        lines = [int(line) for line in text.readlines() if line]
         each_line_is_bool = True
     except ValueError:
-        lines = [ line for line in text.readlines() if line]
+        lines = [line for line in text.readlines() if line]
         each_line_is_bool = False
 
 
@@ -39,16 +39,17 @@ def solve2(init_list: list) -> int:
     return hor * abs(depth)
 
 
-
 example = """forward 5
 down 5
 forward 8
 up 3
 down 8
 forward 2
-""".split("\n")
+""".split(
+    "\n"
+)
 if each_line_is_bool:
-    example = [ int(e) for e in example if e]
+    example = [int(e) for e in example if e]
 
 part1 = solve(example)
 assert part1 == 150
@@ -56,4 +57,4 @@ print("Part 1:", part1)
 
 part2 = solve2(example)
 assert part2 == 900
-print('Part 2:', part2)
+print("Part 2:", part2)

@@ -2,7 +2,7 @@
 from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -27,6 +27,7 @@ def solve(init_list: list) -> int:
             if all([cur < s for s in sides]):
                 count.append((row, col))
     return count
+
 
 def check(matrix, row, col, rows, cols, global_basin):
     cur = matrix[row][col]
@@ -73,20 +74,25 @@ def solve2(init_list: list) -> int:
             count.append(c)
 
     from functools import reduce
+
     return reduce((lambda x, y: x * y), sorted(count, reverse=True)[0:3])
 
 
-
-example = [ e.strip() for e in """2199943210
+example = [
+    e.strip()
+    for e in """2199943210
 3987894921
 9856789892
 8767896789
 9899965678
-""".split("\n") if e ]
-
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part2 = solve2(example)
-print('Example part 2:', part2)
+print("Example part 2:", part2)
 assert part2 == 1134
-print('Part 2:', solve2(lines))
+print("Part 2:", solve2(lines))

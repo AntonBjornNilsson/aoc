@@ -2,8 +2,8 @@
 from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
-  
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -38,13 +38,18 @@ def solve(init_list: list) -> int:
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """2199943210
+example = [
+    e.strip()
+    for e in """2199943210
 3987894921
 9856789892
 8767896789
 9899965678
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)

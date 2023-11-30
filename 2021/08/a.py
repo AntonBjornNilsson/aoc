@@ -4,12 +4,12 @@ from pathlib import Path
 
 with (Path(__file__).parent / "input.txt").open() as text:
 
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
     counter = 0
-    possibe = ('a', 'b', 'c', 'd', 'e', 'f', 'g')
+    possibe = ("a", "b", "c", "d", "e", "f", "g")
     for line in init_list:
         inp, outp = line.split(" | ")
         inputs = inp.split(" ")
@@ -23,8 +23,9 @@ def solve(init_list: list) -> int:
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
+example = [
+    e.strip()
+    for e in """be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
 edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
 fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
 fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb
@@ -34,7 +35,11 @@ dbcfg fgd bdegcaf fgec aegbdf ecdfab fbedc dacgb gdcebf gf | cefg dcbef fcge gbc
 bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbgef
 egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)

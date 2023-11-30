@@ -4,7 +4,7 @@ from typing import DefaultDict
 
 with (Path(__file__).parent / "input.txt").open() as text:
 
-    lines = [ line.strip() for line in text.read().split("\n") if line]
+    lines = [line.strip() for line in text.read().split("\n") if line]
 
 
 def solve(init_list: list) -> int:
@@ -30,11 +30,13 @@ def solve(init_list: list) -> int:
                 total += 1
     return total
 
+
 # def solve2(init_list: list) -> int:
 
 
-
-example = [ e.strip() for e in """0,9 -> 5,9
+example = [
+    e.strip()
+    for e in """0,9 -> 5,9
 8,0 -> 0,8
 9,4 -> 3,4
 2,2 -> 2,1
@@ -44,7 +46,11 @@ example = [ e.strip() for e in """0,9 -> 5,9
 3,4 -> 1,4
 0,0 -> 8,8
 5,5 -> 8,2
-""".split("\n") if e ]
+""".split(
+        "\n"
+    )
+    if e
+]
 
 
 part1 = solve(example)
