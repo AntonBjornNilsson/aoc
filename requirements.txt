@@ -1,4 +1,5 @@
 advent-of-code-data>=2.0.1
+browser-cookie3
 html5lib
 beautifulsoup4
 requests

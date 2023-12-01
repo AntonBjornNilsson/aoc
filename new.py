@@ -3,11 +3,8 @@ import argparse
 from datetime import date
 from pathlib import Path
 import sys
-from typing import Tuple
 
 import aocd
-from bs4 import BeautifulSoup
-import requests
 
 #####################################################################
 # Setup
@@ -58,8 +55,11 @@ answer = puzzle.examples[0].answer_a
 answer2 = puzzle.examples[0].answer_b
 extra = puzzle.examples[0].extra
 
-a_example = directory / "example.txt"
+a_example = directory / "example_a.txt"
+b_example = directory / "example_extra.txt"
 a_example.write_text(example_input)
+if extra:
+    b_example.write_text(extra)
 is_part_a_done = puzzle.answered_a
 is_part_b_done = puzzle.answered_b
 
@@ -72,7 +72,8 @@ a_py = directory / "a.py"
 b_py = directory / "b.py"
 template_path = Path("template.py")
 template_data = template_path.read_text()
-run_py.write_text(template_data)
+if not run_py.is_file():
+    run_py.write_text(template_data)
 
 
 #####################################################################
@@ -96,5 +97,4 @@ if not b_py.is_file() or not is_part_b_done:
 print("Run with command:")
 print()
 print(f"python -m {year}.{str(day).zfill(2)}.run")
-if is_part_a_done and is_part_b_done:
-    print("Both part A and B are completed. Nothing to do here")
+

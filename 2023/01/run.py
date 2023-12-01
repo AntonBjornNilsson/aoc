@@ -1,4 +1,5 @@
-from parsers import parse_int_on_newline, parse_raw
+from pathlib import Path
+from parsers import parse_raw
 from validation import validate
 from .a import solve
 from .b import solve as solve2
@@ -6,12 +7,18 @@ from .b import solve as solve2
 parse_function = parse_raw
 
 lines = parse_function(__file__, "input")
-example = parse_function(__file__, "example")
-example2 = parse_function(__file__, "example2")
-print(f"Formatted example looks like this \n{example}")
-example_a = solve(example)
+ex_lines_a = parse_function(__file__, "example_a")
+ex_lines_b = (
+    parse_function(__file__, "example_b")
+    if (Path(__file__).parent / "example_b.txt").is_file()
+    else ex_lines_a
+)
+print(f"Formatted example looks like this \n{ex_lines_a}")
+example_a = solve(ex_lines_a)
+validate(__file__, example1=example_a)
 solution_a = solve(lines)
-example_b = solve2(example2)
+validate(__file__, answer1=solution_a)
+example_b = solve2(ex_lines_b)
+validate(__file__, example2=example_b)
 solution_b = solve2(lines)
-
-validate(__file__, example_a, example_b, solution_a, solution_b)
+validate(__file__, answer2=solution_b)
