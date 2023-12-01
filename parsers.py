@@ -9,7 +9,7 @@ def parse_int_on_newline(file: str, filename: str, formatted: bool = False):
     return lines
 
 
-def parse_raw(file: str, filename: str, formatted: bool):
+def parse_raw(file: str, filename: str, formatted: bool = False):
     lines = [
         line.strip()
         for line in (Path(file).parent / f"{filename}.txt").open().readlines()
