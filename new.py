@@ -82,7 +82,11 @@ if not run_py.is_file():
 template_path = Path("template.py")
 template_data = """
 def solve(example: list) -> int:
-    return 0
+    ret_val = 0
+    for i, line in enumerate(example):
+        pass
+
+    return ret_val
 """
 if not a_py.is_file():
     a_py.write_text(template_data)
