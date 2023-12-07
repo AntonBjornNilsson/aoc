@@ -1,7 +1,5 @@
-
-
 def solve(example: list) -> int:
-    ret_dict = {x:1 for x in range(len(example))}
+    ret_dict = {x: 1 for x in range(len(example))}
     for i, line in enumerate(example):
         val_line = line[8:].strip()
         w, h = val_line.split("|")

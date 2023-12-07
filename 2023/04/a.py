@@ -1,4 +1,3 @@
-
 def solve(example: list) -> int:
     ret_val = 0
     for line in example:

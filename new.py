@@ -101,4 +101,3 @@ if not b_py.is_file() or not is_part_b_done:
 print("Run with command:")
 print()
 print(f"python -m {year}.{str(day).zfill(2)}.run")
-
