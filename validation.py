@@ -16,7 +16,9 @@ def validate(_path, example1=None, example2=None, answer1=None, answer2=None):
         pass
 
     if example1 is not None:
-        assert type(solution1) == type(example1)
+        assert type(solution1) == type(
+            example1
+        ), f"{type(solution1)} == {type(example1)}"
         if solution1 != example1:
             print(
                 f"Incorrect answer to example 1: Should be {solution1} but was {example1}"
@@ -28,7 +30,9 @@ def validate(_path, example1=None, example2=None, answer1=None, answer2=None):
 
     if puzzle.answered_a:
         if example2 is not None:
-            assert type(solution2) == type(example2)
+            assert type(solution2) == type(
+                example2
+            ), f"{type(solution1)} == {type(example2)}"
             if solution2 != example2:
                 print(
                     f"Incorrect answer to example 2: Should be {solution2} but was {example2}"
