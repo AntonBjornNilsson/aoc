@@ -80,8 +80,9 @@ if not run_py.is_file():
 # Create a.py
 #####################################################################
 template_path = Path("template.py")
-template_data = """
-def solve(example: list) -> int:
+template_data = """from typing import List
+
+def solve(example: List[str]) -> int:
     ret_val = 0
     for i, line in enumerate(example):
         pass
