@@ -83,6 +83,7 @@ def solve(example: list) -> int:
     # return 0
     return min([x[0] for x in init])
 
+
 # 2427826 low
 # 3427826 low
 # 1209828
