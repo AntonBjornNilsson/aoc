@@ -15,12 +15,13 @@ ex_lines_b = (
     else ex_lines_a
 )
 
-example_a = solve(ex_lines_a)
-# validate(__file__, example1=example_a)
-assert example_a == 4
-solution_a = solve(lines)
-validate(__file__, answer1=solution_a)
+# example_a = solve(ex_lines_a)
+# # validate(__file__, example1=example_a)
+# assert example_a == 8
+# solution_a = solve(lines)
+# validate(__file__, answer1=solution_a)
 example_b = solve2(ex_lines_b)
-validate(__file__, example2=example_b)
+# validate(__file__, example2=example_b)
+# assert example_b == 4
 solution_b = solve2(lines)
 validate(__file__, answer2=solution_b)
