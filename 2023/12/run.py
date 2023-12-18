@@ -16,12 +16,10 @@ ex_lines_b = (
 )
 
 example_a = solve(ex_lines_a)
-# validate(__file__, example1=example_a)
-assert example_a == 709, f"{example_a} is not equal to 709"
+validate(__file__, example1=example_a)
 solution_a = solve(lines)
 validate(__file__, answer1=solution_a)
 example_b = solve2(ex_lines_b)
-# assert example_b == 1400, f"{example_b} is not equal to 1400"
-# validate(__file__, example2=example_b)
+validate(__file__, example2=example_b)
 solution_b = solve2(lines)
 validate(__file__, answer2=solution_b)
