@@ -29,5 +29,3 @@ def solve(example: str) -> int:
                 ret_val.append(value)
     return sum(ret_val)
 
-
-is_bad_value(123123123)
