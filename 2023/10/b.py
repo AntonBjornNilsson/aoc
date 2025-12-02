@@ -3,16 +3,18 @@ from typing import List
 import networkx as nx
 import sys
 import copy
+
 sys.setrecursionlimit(25000)
 from matplotlib.path import Path
 
-s = ['S']
-from_west = ['-', '7', 'J'] + s
-from_east = ['-', 'L', 'F'] + s
-from_north = ['|', 'J', 'L'] + s
-from_south = ['|', '7', 'F'] + s
+s = ["S"]
+from_west = ["-", "7", "J"] + s
+from_east = ["-", "L", "F"] + s
+from_north = ["|", "J", "L"] + s
+from_south = ["|", "7", "F"] + s
 
-def stepper(example:list, node: tuple, step: tuple) -> None:
+
+def stepper(example: list, node: tuple, step: tuple) -> None:
 
     row, col = node
     print(node)
@@ -23,7 +25,7 @@ def stepper(example:list, node: tuple, step: tuple) -> None:
         char = example[node[0]][node[1]]
         print(char, node, step)
         # sleep(0.1)
-        visited.append([node[0],node[1]])
+        visited.append([node[0], node[1]])
         if char == "|":
             if step == [1, 0]:
                 node[0] += 1
@@ -77,11 +79,12 @@ def stepper(example:list, node: tuple, step: tuple) -> None:
     #     print("north", example[row-1][col])
     return ret, visited
 
+
 def solve(example: List[str]) -> int:
-    start = (0,0)
+    start = (0, 0)
     for x, line in enumerate(example):
         # print(x, line)
-        for y,col in enumerate(line):
+        for y, col in enumerate(line):
             if col == "S":
                 start = (x, y)
 
@@ -91,11 +94,11 @@ def solve(example: List[str]) -> int:
     ret_n = 1
     ret_e = 1
     # ret_e = stepper(example, [start[0], start[1] + 1], [0, 1])
-    ret_s, visited = stepper(example, [start[0] +1, start[1]], [1, 0])
+    ret_s, visited = stepper(example, [start[0] + 1, start[1]], [1, 0])
     print(visited)
     for y, row in enumerate(example):
         for x, col in enumerate(row):
-            if [y,x] in visited:
+            if [y, x] in visited:
                 print("X", end="")
             else:
                 print(col, end="")
@@ -115,7 +118,8 @@ def solve(example: List[str]) -> int:
 
     print(ret)
 
-    return ret -1
+    return ret - 1
+
 
 # 418 high
 # 417, off by one

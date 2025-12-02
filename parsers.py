@@ -17,3 +17,7 @@ def parse_raw(file: str, filename: str, formatted: bool = False):
     if formatted:
         lines = [line for line in lines if line]
     return lines
+
+
+def parse_single_line(file: str, filename: str):
+    return (Path(file).parent / f"{filename}.txt").open().read()

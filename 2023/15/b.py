@@ -1,6 +1,7 @@
 from typing import List
 from collections import defaultdict
 
+
 def _hash(line: str) -> int:
     ret = 0
     for c in line:
@@ -9,6 +10,7 @@ def _hash(line: str) -> int:
         ret *= 17
         ret %= 256
     return ret
+
 
 def solve(example: List[str]) -> int:
     ret_val = 0
@@ -26,10 +28,10 @@ def solve(example: List[str]) -> int:
             label, strength = ins.split("-")
             box_i = _hash(label)
             hash_map[box_i].pop(label, None)
-    for k,v in hash_map.items():
+    for k, v in hash_map.items():
         # print(k, v)
         for i, vv in enumerate(v.values()):
             # print(k +1, i+1, vv, "=", (k+1) * (i+1) * int(vv))
             # print((k+1) * (i+1) * int(vv))
-            ret_val += (k+1) * (i+1) * int(vv)
+            ret_val += (k + 1) * (i + 1) * int(vv)
     return ret_val

@@ -1,5 +1,6 @@
 from typing import List
 
+
 def solve(example: List[str]) -> int:
     ret_val = 0
     instructions = example[0].split(",")

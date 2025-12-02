@@ -2,16 +2,18 @@ from typing import List
 
 import sys
 import copy
+
 sys.setrecursionlimit(25000)
 from functools import cache
 
 
-def _is_good(line:str, nums:list) -> bool:
-    ret = [x for x in line.split('.') if x]
+def _is_good(line: str, nums: list) -> bool:
+    ret = [x for x in line.split(".") if x]
     return False
 
+
 @cache
-def solve_one_line(line: str, nums: list, index: int=0):
+def solve_one_line(line: str, nums: list, index: int = 0):
     # ?###???????? 3,2,1 == 10
     # .??..??...?##. 1,1,3 == 4
     ret = 0
@@ -21,7 +23,7 @@ def solve_one_line(line: str, nums: list, index: int=0):
     #         return 1
     #     return 0
     if not nums:
-        return 1 if '#' not in line else 0
+        return 1 if "#" not in line else 0
     c = line[0]
     num, nums = nums[0], nums[1:]
     earliest_possible = len(line) - sum(nums) - len(nums) - num + 1
@@ -29,11 +31,11 @@ def solve_one_line(line: str, nums: list, index: int=0):
         if "#" in line[:i]:
             break
         i_next = i + num
-        stepper = line[i : i_next]
-        remaining = line[i_next + 1:]
+        stepper = line[i:i_next]
+        remaining = line[i_next + 1 :]
         edge_case: bool = line[i_next : i_next + 1] != "#"
         if i_next <= len(line):
-            if '.' not in stepper and edge_case:
+            if "." not in stepper and edge_case:
                 index += solve_one_line(remaining, nums)
     return index
     # if c == '.':
@@ -58,16 +60,14 @@ def solve_one_line(line: str, nums: list, index: int=0):
     #         ret += solve_one_line(line[nums[0]:], nums[1:])
     #         print(ret)
 
-        # custom_str = line.replace("?", '.')
-        # if _is_good(custom_str, nums):
-        #     ret += 1
-        # else:
-        #     solve_one_line(line[1:], nums, i)
+    # custom_str = line.replace("?", '.')
+    # if _is_good(custom_str, nums):
+    #     ret += 1
+    # else:
+    #     solve_one_line(line[1:], nums, i)
     # print("here?")
 
     # return ret
-
-
 
 
 def solve(example: List[str]) -> int:
@@ -76,11 +76,11 @@ def solve(example: List[str]) -> int:
         char_sec, num_sec = line.split(" ")
         nums = tuple([int(x) for x in num_sec.split(",")])
         # print(i, char_sec, nums)
-        new_line = "?".join([char_sec]*5)
-        new_nums = nums*5
+        new_line = "?".join([char_sec] * 5)
+        new_nums = nums * 5
         # print(i, new_line, new_nums ,"-"*50)
         ret = solve_one_line(new_line, new_nums)
-        print(i, new_line, new_nums, ret ,"-"*50)
+        print(i, new_line, new_nums, ret, "-" * 50)
         # ret_val += ret * 5
         ret_val += ret
         # if i == 0:
@@ -91,5 +91,6 @@ def solve(example: List[str]) -> int:
         #     assert ret == 1
 
     return ret_val
+
 
 # 7169

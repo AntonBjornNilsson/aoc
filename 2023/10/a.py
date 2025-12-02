@@ -3,15 +3,17 @@ from typing import List
 import networkx as nx
 import sys
 import copy
+
 sys.setrecursionlimit(25000)
 
-s = ['S']
-from_west = ['-', '7', 'J'] + s
-from_east = ['-', 'L', 'F'] + s
-from_north = ['|', 'J', 'L'] + s
-from_south = ['|', '7', 'F'] + s
+s = ["S"]
+from_west = ["-", "7", "J"] + s
+from_east = ["-", "L", "F"] + s
+from_north = ["|", "J", "L"] + s
+from_south = ["|", "7", "F"] + s
 
-def stepper(example:list, node: tuple, step: tuple) -> None:
+
+def stepper(example: list, node: tuple, step: tuple) -> None:
     # graph.add_node(node)
     row, col = node
     print(node)
@@ -81,11 +83,12 @@ def stepper(example:list, node: tuple, step: tuple) -> None:
     #     print("north", example[row-1][col])
     return ret
 
+
 def solve(example: List[str]) -> int:
-    start = (0,0)
+    start = (0, 0)
     for x, line in enumerate(example):
         # print(x, line)
-        for y,col in enumerate(line):
+        for y, col in enumerate(line):
             if col == "S":
                 start = (x, y)
 
@@ -95,10 +98,9 @@ def solve(example: List[str]) -> int:
     ret_n = 1
     ret_e = 1
     # ret_e = stepper(example, [start[0], start[1] + 1], [0, 1])
-    ret_s = stepper(example, [start[0] +1, start[1]], [1, 0])
+    ret_s = stepper(example, [start[0] + 1, start[1]], [1, 0])
 
     print(ret_w, ret_n, ret_e, ret_s, max(ret_w, ret_n, ret_e, ret_s))
-
 
     ret = max(ret_w, ret_n, ret_e, ret_s)
     # print(nx.diameter(graph))

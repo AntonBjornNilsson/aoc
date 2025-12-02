@@ -1,7 +1,9 @@
 import re
 from collections import defaultdict
 from functools import cache
+
 E: list
+
 
 def solve(example: list) -> int:
     ret_val = 0
@@ -32,17 +34,18 @@ def solve(example: list) -> int:
 # 3427826 low
 # 1209828
 
-def naive(x:int, y:int) -> int:
+
+def naive(x: int, y: int) -> int:
     mid = (x + y) // 2
     if mid - x > 50000000:
         return min([naive(x, mid), naive(mid, y)])
     return min([logic(x, mid), logic(mid, y)])
 
+
 @cache
-def logic( x:int, y:int) -> int:
+def logic(x: int, y: int) -> int:
     local_mapping = {}
     print((x, y))
-
 
     init = [x for x in range(x, y)]
     for i, line in enumerate(E[1:]):

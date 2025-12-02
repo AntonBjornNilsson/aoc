@@ -2,7 +2,8 @@ from typing import List
 import numpy as np
 from .a import eval_load
 
-def tramsform(line:list, index:int=0) -> int:
+
+def tramsform(line: list, index: int = 0) -> int:
 
     try:
         stopper = line.index("#")
@@ -13,16 +14,26 @@ def tramsform(line:list, index:int=0) -> int:
     # print(stopper, count, line[:stopper])
     if stopper != len(line):  # "O" in line[stopper+1:]
         # print("do, recr", stopper, line)
-        return ['O' if x < count else '.' for x in range(stopper)] + ['#'] + (tramsform(line[stopper+1:], index=stopper + index +1) if "O" in line[stopper+1:] else line[stopper+1:])
-    return ['O' if x < count else '.' for x in range(stopper)]
+        return (
+            ["O" if x < count else "." for x in range(stopper)]
+            + ["#"]
+            + (
+                tramsform(line[stopper + 1 :], index=stopper + index + 1)
+                if "O" in line[stopper + 1 :]
+                else line[stopper + 1 :]
+            )
+        )
+    return ["O" if x < count else "." for x in range(stopper)]
 
-def trams_matrix(matrix:list) -> None:
+
+def trams_matrix(matrix: list) -> None:
     ret_val = 0
     for i, line in enumerate(matrix):
         matrix[i] = tramsform(matrix[i])
     # return ret_val
 
-def eval_load(max_val:int, line:list, index:int=0) -> int:
+
+def eval_load(max_val: int, line: list, index: int = 0) -> int:
 
     # try:
     #     stopper = line.index("#")
@@ -32,7 +43,8 @@ def eval_load(max_val:int, line:list, index:int=0) -> int:
     # print(count)
     # if stopper != len(line) and "O" in line[stopper+1:]:
     #     return sum(count) + eval_load(max_val, line[stopper+1:], index=stopper + index +1)
-    return sum([max_val - x for x in range(max_val) if line[x] == 'O' ])
+    return sum([max_val - x for x in range(max_val) if line[x] == "O"])
+
 
 def eval_matrix(matrix: list) -> int:
     ret_val = 0
@@ -45,6 +57,7 @@ def eval_matrix(matrix: list) -> int:
     #     print(x)
     # print("EVAL")
     return ret_val
+
 
 def solve(example: List[str]) -> int:
     ret_val = 0
@@ -93,24 +106,21 @@ def solve(example: List[str]) -> int:
         #     exit(0)
         ret_list.append(ret_val)
 
-
-
-
-
-
         # if last_val == ret_val:
         #     print("found in cycle", cycle)
         #     break
         # last_val = ret_val
     print(ret_list)
-    print([ret_list[x] for x in range(len(ret_list))if x % 10 == 0] )
+    print([ret_list[x] for x in range(len(ret_list)) if x % 10 == 0])
 
     return ret_val
+
 
 def nice_print(grid: list) -> None:
     temp = np.array([list(row) for row in grid])
     grid = np.transpose(temp).tolist()
     for x in grid:
         print(x)
+
 
 # 96447, lucky endpoint. 10**3 was the same as 10**9

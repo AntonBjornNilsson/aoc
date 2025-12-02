@@ -22,7 +22,7 @@ validate(__file__, answer1=solution_a)
 example_b = solve2(ex_lines_b)
 # validate(__file__, example2=example_b)
 assert (
-    example_b == 51
-), f"{example_b} is not equal to 51"  # comment out when aocd is not working
+    example_b == 6
+), f"{example_b} is not equal to 6"  # comment out when aocd is not working
 solution_b = solve2(lines)
 validate(__file__, answer2=solution_b)

@@ -1,6 +1,7 @@
 from typing import List
 import numpy as np
 
+
 def count_different_chars(str1, str2):
     # thanks chatgpt for this one
     # Ensure the strings are of the same length
@@ -15,10 +16,11 @@ def count_different_chars(str1, str2):
 
     return count
 
+
 def _eval_grid(grid: list) -> int:
     for i in range(len(grid)):
         do_ret = True
-        for u in range(i +1, len(grid)):
+        for u in range(i + 1, len(grid)):
             if count_different_chars(grid[i], grid[u]) != 1:
                 continue
             # if (u+1)-(i +1) % 2 == 1:
@@ -26,34 +28,35 @@ def _eval_grid(grid: list) -> int:
             print(i, "has one diff to", u)
             print(grid[i], grid[u])
             try:
-                print(list(range(1, u-i)))
-                if list(range(1, u-i)) == []:
+                print(list(range(1, u - i)))
+                if list(range(1, u - i)) == []:
                     print("ret same", i, u)
-                    return i +1
-                for x in range(1, u-i):
-                    print("checking", i+x, u-x)
-                    if i+x == u-x:
+                    return i + 1
+                for x in range(1, u - i):
+                    print("checking", i + x, u - x)
+                    if i + x == u - x:
                         do_ret = True
                         break
                     # if i-x < 0 or i + 1+ x >len(grid[0]):
-                        # break
-                    if grid[i+x] == grid[u-x]:
+                    # break
+                    if grid[i + x] == grid[u - x]:
                         continue
-                    print("escaped", grid[i+x], u-x, "is not same as")
+                    print("escaped", grid[i + x], u - x, "is not same as")
                     # print(grid[i+1+x], i+1+x)
                     do_ret = False
                     break
                 # print("escaped in break, last known x was",x )
                 if do_ret:
                     # print("return", (i+1 + u+1) // 2 )
-                    return  (i+1 + u+1) // 2
+                    return (i + 1 + u + 1) // 2
             except IndexError:
                 # print("escaped in try, last known x was",x )
-                return (i+1 + u+1) // 2
+                return (i + 1 + u + 1) // 2
     # print("REVERTING")
     # from .a import _eval_grid as old
     # return old(grid)
     return 0
+
 
 def solve(example: List[str]) -> int:
     ret_val = 0
@@ -69,19 +72,19 @@ def solve(example: List[str]) -> int:
     #         print(l)
     #     print("---")
 
-
     for i, grid in enumerate(split_examples):
         # find up/down
-        print("-"*50)
+        print("-" * 50)
         for u, x in enumerate(grid):
-            print(u,x)
+            print(u, x)
 
         from .a import _eval_grid as old
+
         x = old(grid)
         # if ret == 0:
         ret = _eval_grid(grid)
         if x != 0:
-            assert x != ret , f"{x} is the same as {ret}"
+            assert x != ret, f"{x} is the same as {ret}"
         # else:
         #     print("FOUND AN OLD SOLUTION", ret)
         ret_val += ret * 100
@@ -95,12 +98,13 @@ def solve(example: List[str]) -> int:
             # print()
             # grid = np.fliplr(temp).tolist()
             from .a import _eval_grid as old
+
             x = old(grid)
             ret = _eval_grid(grid)
             if x != 0:
-                assert x != ret , f"{x} is the same as {ret}"
+                assert x != ret, f"{x} is the same as {ret}"
             ret_val += ret
-        print("grid_nbr", i,"ret", ret, "total", ret_val)
+        print("grid_nbr", i, "ret", ret, "total", ret_val)
         # if i == 0:
         #     assert ret == 3
         # if i == 1:
@@ -112,9 +116,8 @@ def solve(example: List[str]) -> int:
         # if i == 4:
         #     assert ret == 6, ret
 
-
-
     return ret_val
+
 
 # 33560 low
 # 43100 high

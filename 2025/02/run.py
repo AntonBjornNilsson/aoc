@@ -1,10 +1,10 @@
 from pathlib import Path
-from parsers import parse_raw
+from parsers import parse_single_line
 from validation import validate
 from .a import solve
 from .b import solve as solve2
 
-parse_function = parse_raw
+parse_function = parse_single_line
 
 lines = parse_function(__file__, "input")
 ex_lines_a = parse_function(__file__, "example_a")
@@ -15,14 +15,12 @@ ex_lines_b = (
     else ex_lines_a
 )
 
-example_a = solve(ex_lines_a)
-validate(__file__, example1=example_a)
-solution_a = solve(lines)
-validate(__file__, answer1=solution_a)
+# example_a = solve(ex_lines_a)
+# validate(__file__, example1=example_a)
+# solution_a = solve(lines)
+# validate(__file__, answer1=solution_a)
 example_b = solve2(ex_lines_b)
-# validate(__file__, example2=example_b)
-assert (
-    example_b == 51
-), f"{example_b} is not equal to 51"  # comment out when aocd is not working
+validate(__file__, example2=example_b)
+# assert example_b == , f"{example_b} is not equal to " # comment out when aocd is not working
 solution_b = solve2(lines)
 validate(__file__, answer2=solution_b)

@@ -4,3 +4,5 @@ html5lib
 beautifulsoup4
 requests
 networkx
+lefthook
+black
