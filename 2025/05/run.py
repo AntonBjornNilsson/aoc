@@ -16,16 +16,11 @@ ex_lines_b = (
 )
 
 example_a = solve(ex_lines_a)
-# validate(__file__, example1=example_a)
-assert (
-    example_a == 13
-), f"{example_a} is not equal to "  # comment out when aocd is not working
+validate(__file__, example1=example_a)
 solution_a = solve(lines)
 validate(__file__, answer1=solution_a)
 example_b = solve2(ex_lines_b)
-# validate(__file__, example2=example_b)
-assert (
-    example_b == 43
-), f"{example_b} is not equal to 43"  # comment out when aocd is not working
+validate(__file__, example2=example_b)
+# assert example_b == , f"{example_b} is not equal to " # comment out when aocd is not working
 solution_b = solve2(lines)
 validate(__file__, answer2=solution_b)

@@ -26,7 +26,7 @@ def solve(example: List[str]) -> int:
     grid = []
     for i, line in enumerate(example):
         grid.append([x for x in line])
-        
+
     while last_iter != ret_val:
         last_iter = ret_val
         for iy, y in enumerate(grid):
