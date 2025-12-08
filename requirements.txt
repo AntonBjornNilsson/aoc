@@ -6,3 +6,4 @@ requests
 networkx
 lefthook
 black
+numpy
