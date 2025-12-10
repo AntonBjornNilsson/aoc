@@ -8,3 +8,10 @@ def find_all_int(line: str) -> List[int]:
 
 def find_all_words(line: str) -> List[str]:
     return [x for x in re.findall(r"\w+", line)]
+
+
+def find_all_in_paranthesis(line: str) -> List[str]:
+    return [x for x in re.findall(r"\(([^\)]+)\)", line)]
+
+def find_all_in_curly_brackets(line: str) -> List[str]:
+    return [x for x in re.findall(r"{([^{]*?)}", line)]
